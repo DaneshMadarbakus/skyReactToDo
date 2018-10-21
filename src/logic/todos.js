@@ -35,12 +35,13 @@ const reducer = (state = initialState, action) => {
 
     case DELETE_ITEM:
       const itemsCopy = state.items;
-      const indexOfItem = itemsCopy.map(function(item) { return item.id; }).indexOf(action.id);
-      itemsCopy.splice(indexOfItem, 1);
+      // const indexOfItem = itemsCopy.map(function(item) { return item.id; }).indexOf(action.id);
+      // itemsCopy.filter((x) => x.id !== action.id);
+      // itemsCopy.splice(indexOfItem, 1);
       
       return {
         ...state,
-        items: itemsCopy
+        items: itemsCopy.filter((x) => x.id !== action.id)
       };
 
     default:

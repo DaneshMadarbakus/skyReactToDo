@@ -31,7 +31,6 @@ describe('reducer', () => {
     };
     const mockAction = deleteItem(1);
     const result = reducer(state, mockAction);
-    console.log(result.items);
     expect(result.items).toHaveLength(2);
     expect(result.items[0].id).toEqual(2);
     expect(result.items[0].content).toEqual('second');
