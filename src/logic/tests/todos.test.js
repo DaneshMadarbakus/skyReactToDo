@@ -1,4 +1,4 @@
-import reducer, { initialState, addItem, removeItem } from '../todos';
+import reducer, { initialState, addItem, deleteItem } from '../todos';
 
 describe('reducer', () => {
   it('should return state for unknown action', () => {
@@ -25,14 +25,15 @@ describe('reducer', () => {
     expect(result.items[2].content).toEqual('third');
   });
 
-  it('should remove item on REMOVE_ITEM', () => {
+  it('should remove item on DELETE_ITEM', () => {
     const state = {
       items: [{ id: 1, content: 'first' }, { id: 2, content: 'second' }],
     };
-    const mockAction = removeItem('first');
+    const mockAction = deleteItem(0);
     const result = reducer(state, mockAction);
     expect(result.items).toHaveLength(1);
+    console.log(result.items);
     expect(result.items[0].id).toEqual(2);
-    expect(result.items[1].content).toEqual('second');
+    expect(result.items[0].content).toEqual('second');
   })
 });

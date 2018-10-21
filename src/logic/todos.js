@@ -1,7 +1,13 @@
 export const ADD_ITEM = 'qgo/assessment/ADD_ITEM';
 
+export const DELETE_ITEM = 'qgo/assessment/DELETE_ITEM';
+
 export const addItem = (content) => {
   return { type: ADD_ITEM, content };
+};
+
+export const deleteItem = (id) => {
+  return {type: DELETE_ITEM, id};
 };
 
 export const initialState = {
@@ -26,6 +32,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, newItem],
       };
+
+    case DELETE_ITEM:
+      const indexOfItem = state.items.map(function(item) { return item.id; }).indexOf(action.id);
+      const reviseditems = state.items.splice(indexOfItem, 1);
+      
+      return {
+        ...state,
+        items: reviseditems
+      };
+
     default:
       return state;
   }
