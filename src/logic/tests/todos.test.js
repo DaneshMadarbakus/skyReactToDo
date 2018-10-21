@@ -27,11 +27,12 @@ describe('reducer', () => {
 
   it('should remove item on DELETE_ITEM', () => {
     const state = {
-      items: [{ id: 1, content: 'first' }, { id: 2, content: 'second' }],
+      items: [{ id: 1, content: 'first' }, { id: 2, content: 'second' }, {id: 3, content: 'third'}],
     };
-    const mockAction = deleteItem(0);
+    const mockAction = deleteItem(1);
     const result = reducer(state, mockAction);
-    expect(result.items).toHaveLength(1);
+    console.log(result.items);
+    expect(result.items).toHaveLength(2);
     expect(result.items[0].id).toEqual(2);
     expect(result.items[0].content).toEqual('second');
   })
