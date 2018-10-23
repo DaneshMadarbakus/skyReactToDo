@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case DELETE_ITEM:
-      const itemsCopy = state.items;
+      const itemsCopy = [...state.items];
 
       return {
         ...state,
@@ -46,11 +46,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case COMPLETE_ITEM:
-      const itemsCopy = state.items;
+      const itemsCopyOne = [...state.items];     
+      itemsCopyOne.filter((x) => x.id === action.id)[0].isCompleted = true;
 
       return {
         ...state,
-        items: itemsCopy.filter((x) => x.id !== action.id)
+        items: itemsCopyOne
       };
 
     default:
