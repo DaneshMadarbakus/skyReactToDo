@@ -1,4 +1,4 @@
-import reducer, { initialState, addItem, deleteItem } from '../todos';
+import reducer, { initialState, addItem, deleteItem, completeItem } from '../todos';
 
 describe('reducer', () => {
   it('should return state for unknown action', () => {
@@ -34,5 +34,14 @@ describe('reducer', () => {
     expect(result.items).toHaveLength(2);
     expect(result.items[0].id).toEqual(2);
     expect(result.items[0].content).toEqual('second');
+  })
+
+  it('should complete item on COMPLETE_ITEM', () => {
+    const state = {
+      items: [{ id: 1, content: 'first', isComplete: false }, { id: 2, content: 'second', isComplete: false }, {id: 3, content: 'third', isComplete: false}],
+    };
+    const mockAction = completeItem(1);
+    const result = reducer(state, mockAction);
+    expect(result.items[0].isComplete).toEqual(true);
   })
 });
