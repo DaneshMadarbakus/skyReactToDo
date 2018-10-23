@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteItem } from '../../logic/todos';
+import { deleteItem, toggleCompleteItem } from '../../logic/todos';
 import './styles.css';
 
-export const ItemsList = ({ items, onDelete }) => {
+export const ItemsList = ({ items, onDelete, onToggleComplete }) => {
   return (
     <div>
       <ul className="itemsList-ul">
@@ -17,7 +17,10 @@ export const ItemsList = ({ items, onDelete }) => {
             onClick={() => {
               onDelete(item.id);
             }}
-          />
+          /><label>Check as complete <input className="check-box" type="checkbox" name="completion" onChange={() => {
+            onToggleComplete(item.id);
+          }} /></label>
+          
         </li>)}
       </ul>
     </div>
@@ -26,6 +29,8 @@ export const ItemsList = ({ items, onDelete }) => {
 
 ItemsList.propTypes = {
   items: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onToggleComplete: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -34,6 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onDelete: (id) => dispatch(deleteItem(id)),
+  onToggleComplete: (id) => dispatch(toggleCompleteItem(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
