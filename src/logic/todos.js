@@ -1,6 +1,6 @@
 export const ADD_ITEM = 'qgo/assessment/ADD_ITEM';
 export const DELETE_ITEM = 'qgo/assessment/DELETE_ITEM';
-export const COMPLETE_ITEM = 'qgo/assessment/COMPLETE_ITEM';
+export const TOGGLE_COMPLETE_ITEM = 'qgo/assessment/TOGGLE_COMPLETE_ITEM';
 
 export const addItem = (content) => {
   return { type: ADD_ITEM, content };
@@ -10,8 +10,8 @@ export const deleteItem = (id) => {
   return { type: DELETE_ITEM, id };
 };
 
-export const completeItem = (id) => {
-  return { type: COMPLETE_ITEM, id };
+export const toggleCompleteItem = (id) => {
+  return { type: TOGGLE_COMPLETE_ITEM, id };
 };
 
 export const initialState = {
@@ -45,9 +45,9 @@ const reducer = (state = initialState, action) => {
         items: itemsCopy.filter((x) => x.id !== action.id)
       };
 
-    case COMPLETE_ITEM:
+    case TOGGLE_COMPLETE_ITEM:
       const itemsCopyOne = [...state.items];     
-      itemsCopyOne.filter((x) => x.id === action.id)[0].isCompleted = true;
+      itemsCopyOne.filter((x) => x.id === action.id)[0].isCompleted = !itemsCopyOne.filter((x) => x.id === action.id)[0].isCompleted;
 
       return {
         ...state,
