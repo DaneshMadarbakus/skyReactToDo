@@ -1,4 +1,4 @@
-import reducer, { initialState, addItem, deleteItem, toggleCompleteItem } from '../todos';
+import reducer, { initialState, addItem, deleteItem, toggleCompleteItem, toggleHideItems } from '../todos';
 
 describe('reducer', () => {
   it('should return state for unknown action', () => {
@@ -49,4 +49,12 @@ describe('reducer', () => {
     expect(resultTwo.items[1].isCompleted).toEqual(false);
   })
 
+  it('should toggle state on TOGGLE_HIDE_ITEMS', () => {
+    const state = {
+      hideCompletedItems: false
+    };
+    const mockAction = toggleHideItems();
+    const result = reducer(state, mockAction);
+    expect(result.hideCompletedItems).toEqual(true);
+  })
 });
