@@ -15,7 +15,6 @@ export const ItemsList = ({ items, onDelete }) => {
             type="button"
             value="Remove task"
             onClick={() => {
-              console.log('hello');
               onDelete(item.id);
             }}
           />
