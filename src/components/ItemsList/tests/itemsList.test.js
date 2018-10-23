@@ -4,6 +4,7 @@ import { ItemsList } from '../index';
 
 const defaultProps = {
   onDelete: (f) => f,
+  onComplete: (f) => f,
   items: [],
 };
 
@@ -47,4 +48,15 @@ describe('ItemsList', () => {
   //   renderedItem.find('.remove-button').first().simulate('click');
   //   expect(renderedItem.find('li')).toHaveLength(2);
   // });
+
+  it('should call onComplete with the item id', () => {
+    const onCompleteMock = jest.fn();
+    const items = [{ id: 1, content: 'Test 1', isComplete: false }, { id: 2, content: 'Test 2', isComplete: false }, { id: 3, content: 'Test 3', isComplete: false }];
+    const renderedItem = mount(
+      <ItemsList {...defaultProps} items={items} onDelete={onCompleteMock} />,
+    );
+    renderedItem.find('.completionCheck').first().simulate('click');
+    expect(onCompleteMock.mock.calls.length).toBe(1);
+    expect(onCompleteMock.mock.calls[0][0]).toBe(1);
+  });
 });
