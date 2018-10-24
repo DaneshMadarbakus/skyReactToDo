@@ -6,6 +6,7 @@ const defaultProps = {
   onDelete: (f) => f,
   onToggleComplete: (f) => f,
   onToggleHide: (f) => f,
+  hideCompletedItems: false,
   items: [],
 };
 
@@ -42,35 +43,27 @@ describe('ItemsList', () => {
     expect(onDeleteMock.mock.calls[0][0]).toBe(1);
   });
 
-  // it('should clear the item onDelete', () => {
-  //   const onDeleteMock = jest.fn();
-  //   const items = [{ id: 1, content: 'Test 1' }, { id: 2, content: 'Test 2' }, { id: 3, content: 'Test 3' }];
-  //   const renderedItem = mount(<ItemsList {...defaultProps} items={items} onDelete={onDeleteMock} />,);
-  //   renderedItem.find('.remove-button').first().simulate('click');
-  //   expect(renderedItem.find('li')).toHaveLength(2);
+  // it('should render one less item after calling onDelete', () => {
   // });
 
-  // it('should call onToggleComplete with the item id', () => {
+  // it('should call onToggleComplete', () => {
   //   const onToggleCompleteMock = jest.fn();
-  //   const items = [{ id: 1, content: 'Test 1', isComplete: false }, { id: 2, content: 'Test 2', isComplete: false }, { id: 3, content: 'Test 3', isComplete: false }];
+  //   const items = [
+  //     { id: 1, content: 'Call mum', isCompleted: false },
+  //     { id: 2, content: 'Buy cat food', isCompleted: false },
+  //     { id: 3, content: 'Water the plants', isCompleted: false },
+  //   ];
   //   const renderedItem = mount(
   //     <ItemsList {...defaultProps} items={items} onToggleComplete={onToggleCompleteMock} />,
   //   );
-  //   renderedItem.find('label').first().simulate('click');
-
+  //   renderedItem.find('.check-box').first().simulate('click');
   //   expect(onToggleCompleteMock.mock.calls.length).toBe(1);
   //   expect(onToggleCompleteMock.mock.calls[0][0]).toBe(1);
   // });
 
-  //   it('should call onToggleHide', () => {
-  //   const onToggleCompleteMock = jest.fn();
-  //   const items = [{ id: 1, content: 'Test 1', isComplete: false }, { id: 2, content: 'Test 2', isComplete: false }, { id: 3, content: 'Test 3', isComplete: false }];
-  //   const renderedItem = mount(
-  //     <ItemsList {...defaultProps} items={items} onToggleComplete={onToggleCompleteMock} />,
-  //   );
-  //   renderedItem.find('label').first().simulate('click');
+  // it('should call onToggleHide', () => {
+  // });
 
-  //   expect(onToggleCompleteMock.mock.calls.length).toBe(1);
-  //   expect(onToggleCompleteMock.mock.calls[0][0]).toBe(1);
+  // it('should render items that are not complete only on onToggleHide', () => {
   // });
 });
