@@ -5,6 +5,7 @@ import { ItemsList } from '../index';
 const defaultProps = {
   onDelete: (f) => f,
   onToggleComplete: (f) => f,
+  onToggleHide: (f) => f,
   items: [],
 };
 
@@ -49,7 +50,19 @@ describe('ItemsList', () => {
   //   expect(renderedItem.find('li')).toHaveLength(2);
   // });
 
-  // it('should toggle onToggleComplete with the item id', () => {
+  // it('should call onToggleComplete with the item id', () => {
+  //   const onToggleCompleteMock = jest.fn();
+  //   const items = [{ id: 1, content: 'Test 1', isComplete: false }, { id: 2, content: 'Test 2', isComplete: false }, { id: 3, content: 'Test 3', isComplete: false }];
+  //   const renderedItem = mount(
+  //     <ItemsList {...defaultProps} items={items} onToggleComplete={onToggleCompleteMock} />,
+  //   );
+  //   renderedItem.find('label').first().simulate('click');
+
+  //   expect(onToggleCompleteMock.mock.calls.length).toBe(1);
+  //   expect(onToggleCompleteMock.mock.calls[0][0]).toBe(1);
+  // });
+
+  //   it('should call onToggleHide', () => {
   //   const onToggleCompleteMock = jest.fn();
   //   const items = [{ id: 1, content: 'Test 1', isComplete: false }, { id: 2, content: 'Test 2', isComplete: false }, { id: 3, content: 'Test 3', isComplete: false }];
   //   const renderedItem = mount(
