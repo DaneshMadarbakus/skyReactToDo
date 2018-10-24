@@ -16,18 +16,19 @@ describe('reducer', () => {
 
   it('should add new items on ADD_ITEM', () => {
     const state = {
-      items: [{ id: 1, content: 'first' }, { id: 2, content: 'second' }],
+      items: [{ id: 1, content: 'first', isCompleted: false }, { id: 2, content: 'second', isCompleted: false }],
     };
     const mockAction = addItem('third');
     const result = reducer(state, mockAction);
     expect(result.items).toHaveLength(3);
     expect(result.items[2].id).toEqual(3);
     expect(result.items[2].content).toEqual('third');
+    expect(result.items[2].isCompleted).toEqual(false);
   });
 
   it('should remove item on DELETE_ITEM', () => {
     const state = {
-      items: [{ id: 1, content: 'first' }, { id: 2, content: 'second' }, {id: 3, content: 'third'}],
+      items: [{ id: 1, content: 'first', isCompleted: false }, { id: 2, content: 'second', isCompleted: false  }, {id: 3, content: 'third', isCompleted: false }],
     };
     const mockAction = deleteItem(1);
     const result = reducer(state, mockAction);

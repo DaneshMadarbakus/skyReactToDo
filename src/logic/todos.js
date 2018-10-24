@@ -36,6 +36,7 @@ const reducer = (state = initialState, action) => {
       const newItem = {
         id: nextId,
         content: action.content,
+        isCompleted: false,
       };
 
       return {
